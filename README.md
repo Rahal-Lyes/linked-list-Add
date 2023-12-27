@@ -6,10 +6,7 @@ This C program demonstrates basic operations on a singly linked list, including 
 ## Table of Contents
 
 - [Introduction](#introduction)
-- [Usage](#usage)
-- [Functions](#functions)
-- [Contributing](#contributing)
-- [License](#license)
+
 
 ## Introduction
 

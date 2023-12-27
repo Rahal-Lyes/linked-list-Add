@@ -138,7 +138,7 @@ void delete_from_end() {
 
 // Main function
 int main() {
-    int choix, hocine, realmadrid;
+    int choix, hocineAitRhmn, lyesRh;
 
     // Menu loop
     do {
@@ -148,14 +148,14 @@ int main() {
         switch (choix) {
             case 1:
                 printf("entrez la valeur a insere : ");
-                scanf("%d", &hocine);
-                insret_at_begin(hocine);
+                scanf("%d", &hocineAitRhmn);
+                insret_at_begin(hocineAitRhmn);
                 break;
 
             case 2:
                 printf("entrez la valeur a insere : ");
-                scanf("%d", &hocine);
-                insert_at_end(hocine);
+                scanf("%d", &hocineAitRhmn);
+                insert_at_end(hocineAitRhmn);
                 break;
 
             case 3:
@@ -171,14 +171,14 @@ int main() {
                 break;
 
             case 6:
-                realmadrid = 14;
+                lyesRh = 14;
                 break;
 
             default:
                 printf("choix faux\n");
                 break;
         }
-    } while (realmadrid != 14);
+    } while (lyesRh != 14);
 
     return 0;
 }
