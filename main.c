@@ -4,9 +4,7 @@
 #include <math.h>
 #include <string.h>
 
-
-
-//creation de la structeur d'element de la lsite
+// Structure definition for a linked list element
 typedef struct element element;
 
 struct element {
@@ -14,172 +12,173 @@ struct element {
     element *suivant;
 };
 
+// Type definition for a linked list
 typedef element* liste;
-int count=0;
-liste start= NULL;
 
+// Global variables for count and the start of the linked list
+int count = 0;
+liste start = NULL;
 
-//procedeur ansertion au debut
-void insret_at_begin(int x){
+// Procedure for inserting at the beginning of the linked list
+void insret_at_begin(int x) {
     liste t;
-    t=(element*)malloc(sizeof(element));
+    t = (element*)malloc(sizeof(element));
     count++;
 
-    if (start == NULL ){
-        start=t;
-        start->valeur=x;
-        start->suivant=NULL;
+    if (start == NULL) {
+        // If the list is empty, create the first element
+        start = t;
+        start->valeur = x;
+        start->suivant = NULL;
         return;
     }
-    t->valeur=x;
-    t->suivant=start;
-    start=t;
+
+    // Insert at the beginning
+    t->valeur = x;
+    t->suivant = start;
+    start = t;
 }
 
-
-//procedeur insertion a la fin
-void insert_at_end(int x){
-    liste t,temp;
-    t=(element*)malloc(sizeof(element));
+// Procedure for inserting at the end of the linked list
+void insert_at_end(int x) {
+    liste t, temp;
+    t = (element*)malloc(sizeof(element));
     count++;
 
-    if (start == NULL){
-        start=t;
-        start->valeur=x;
-        start->suivant=NULL;
+    if (start == NULL) {
+        // If the list is empty, create the first element
+        start = t;
+        start->valeur = x;
+        start->suivant = NULL;
         return;
     }
-    temp=start;
-    while (temp->suivant != NULL){
-        temp=temp->suivant;
+
+    // Traverse to the end and insert the new element
+    temp = start;
+    while (temp->suivant != NULL) {
+        temp = temp->suivant;
     }
-    temp->suivant=t;
-    t->valeur=x;
-    t->suivant=NULL;
+    temp->suivant = t;
+    t->valeur = x;
+    t->suivant = NULL;
 }
 
-
-//parcours de la liste
-void travers(){
+// Procedure for traversing and displaying the linked list
+void travers() {
     liste t;
-    t=start;
+    t = start;
 
-    if(t == NULL){
+    if (t == NULL) {
         printf("la liste est vide\n");
         return;
     }
-    printf("la liste contient %d elemets\n",count);
 
-    while (t->suivant != NULL){
-        printf("%d\n",t->valeur);
-        t=t->suivant;
+    printf("la liste contient %d elemets\n", count);
+
+    while (t->suivant != NULL) {
+        printf("%d\n", t->valeur);
+        t = t->suivant;
     }
-    printf("%d\n",t->valeur);
+
+    printf("%d\n", t->valeur);
 }
 
-
-//procedeur supprimer la tete de la liste
-void delete_from_begin(){
+// Procedure for deleting from the beginning of the linked list
+void delete_from_begin() {
     liste t;
     int n;
 
-    if (start == NULL){
+    if (start == NULL) {
         printf("la liste est deja vide\n");
         return;
     }
 
-    n=start->valeur;
-    t=start->suivant;
+    n = start->valeur;
+    t = start->suivant;
     free(start);
-    start=t;
-    printf("%d a ete supprimer\n",n);
+    start = t;
+    printf("%d a ete supprimer\n", n);
     count--;
 }
 
-
-//procedeur supprimer la queue de la liste
-void delete_from_end(){
-    liste u,t;
+// Procedure for deleting from the end of the linked list
+void delete_from_end() {
+    liste u, t;
     int n;
 
-    if(start == NULL){
+    if (start == NULL) {
         printf("la liste est deja vide\n");
         return;
     }
     count--;
 
-    if(start->suivant == NULL){
-        n=start->valeur;
+    if (start->suivant == NULL) {
+        // If there is only one element in the list
+        n = start->valeur;
         free(start);
-        start= NULL;
-        printf("%d a ete supprimer\n",n);
+        start = NULL;
+        printf("%d a ete supprimer\n", n);
         return;
     }
 
-    t=start;
-    while(t->suivant != NULL){
-        u=t;
-        t=t->suivant;
+    t = start;
+    while (t->suivant != NULL) {
+        u = t;
+        t = t->suivant;
     }
-    //u pointe sur l'avant dernier element
-    //t pointe sur le dernier element
-    n=t->valeur;
-    u->suivant=NULL;
+
+    // u points to the second-to-last element
+    // t points to the last element
+    n = t->valeur;
+    u->suivant = NULL;
     free(t);
-    printf("%d a ete supprimer\n",n);
-    return ;
+    printf("%d a ete supprimer\n", n);
+    return;
 }
 
+// Main function
+int main() {
+    int choix, hocine, realmadrid;
 
-int main(){
+    // Menu loop
+    do {
+        printf("\n- Choice your programme:\n -Add to begin = 1\n -Add to end = 2\n -Display = 3 \n -Delete from begin = 4\n -Delete from end= 5\n -Stop every thing = 6\n");
+        scanf("%d", &choix);
 
-    int choix,hocine,realmadrid;
-    char reponse;
+        switch (choix) {
+            case 1:
+                printf("entrez la valeur a insere : ");
+                scanf("%d", &hocine);
+                insret_at_begin(hocine);
+                break;
 
-    do{
-    printf("\n- Choice your programme:\n -Add to begin = 1\n -Add to end = 2\n -Display = 3 \n -Delete from begin = 4\n -Delete from end= 5\n -Stop every thing = 6\n");
-    scanf("%d",&choix);
-    switch (choix){
+            case 2:
+                printf("entrez la valeur a insere : ");
+                scanf("%d", &hocine);
+                insert_at_end(hocine);
+                break;
 
-        case 1 :
-            printf("entrez la valeur a insere : ");
-            scanf("%d",&hocine);
-            insret_at_begin(hocine);
-        break;
+            case 3:
+                travers();
+                break;
 
+            case 4:
+                delete_from_begin();
+                break;
 
-        case 2 :
-            printf("entrez la valeur a insere : ");
-            scanf("%d",&hocine);
-            insert_at_end(hocine);
-        break;
+            case 5:
+                delete_from_end();
+                break;
 
+            case 6:
+                realmadrid = 14;
+                break;
 
-        case 3 :
-            travers(hocine);
-        break;
-
-
-        case 4 :
-            delete_from_begin(hocine);
-        break;
-
-
-        case 5 :
-            delete_from_end(hocine);
-        break;
-
-
-        case 6 :
-            realmadrid=14;
-        break;
-
-
-        default :
-            printf("choix faux\n");
-        break;
-    }
-    }while(realmadrid != 14);
+            default:
+                printf("choix faux\n");
+                break;
+        }
+    } while (realmadrid != 14);
 
     return 0;
 }
